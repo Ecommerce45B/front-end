@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom'; 
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Logout.module.css";
+import URLTOCHANGE from "../../Helpers/routesToChange";
 
 const Logout = () => {
   const { logout, user, isAuthenticated } = useAuth0();
@@ -12,7 +13,7 @@ const Logout = () => {
     const createUser = async () => {
       if (isAuthenticated) {
         try {
-          await axios.post("http://localhost:3001/usuarios/new", {
+          await axios.post(`${URLTOCHANGE.theUrl}/usuarios/new`, {
             email: user.email,
             nombre: user.name,
             avatar: user.picture,
@@ -30,7 +31,7 @@ const Logout = () => {
     const fetchUserImage = async () => {
       try {
         if (isAuthenticated && user && user.email) {
-          const response = await axios.get(`http://localhost:3001/usuarios/email/${user.email}`);
+          const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/email/${user.email}`);
           if(response.data.length > 0) {
             setUserImage(response.data[0].picture);
           } else {

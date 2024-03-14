@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from "./searchBarProductos.module.css";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const SearchBarProductos = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,9 +16,9 @@ const SearchBarProductos = ({ onSearch }) => {
     try {
       let response;
       if (searchTerm.trim() === '') {
-        response = await axios.get(`http://localhost:3001/productos`);
+        response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
       } else {
-        response = await axios.get(`http://localhost:3001/productos/nombre/?nombre=${searchTerm}`);
+        response = await axios.get(`${URLTOCHANGE.theUrl}/productos/nombre/?nombre=${searchTerm}`);
       }
       if (response && response.data) {
         if (response.data.length === 0) {

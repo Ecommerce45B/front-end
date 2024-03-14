@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./adminProducts.module.css";
 import SearchBarProductos from "../SearchBar/SearchBarProductos";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ const AdminProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error trayendo los productos:", error);
@@ -35,10 +36,10 @@ const AdminProducts = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/productos/change/${productId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/productos/change/${productId}`, {
           estado: true,
         });
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error al actualizar producto:", error);
@@ -52,10 +53,10 @@ const AdminProducts = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.put(`http://localhost:3001/productos/change/${productId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/productos/change/${productId}`, {
           estado: false,
         });
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error al eliminar producto:", error);

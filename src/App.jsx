@@ -20,8 +20,9 @@ import Detail from "./Components/Detail/Detail"
 import Carrito from "./Components/Carrito/Carrito"
 import DashboardRoutes from "./DashboardRoutes";
 import Banned from "./Components/pages/Dashboard/Banned/Banned"
-
 import Footer from "./Components/Footer/Footer"
+
+import URLTOCHANGE from "./Helpers/routesToChange";
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/usuarios`);
+      const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios`);
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -51,7 +52,7 @@ function App() {
     const fetchUserData = async () => {
       if (isAuthenticated && user) {
         try {
-          const response = await axios.get(`http://localhost:3001/usuarios/email/${user.email}`);
+          const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/email/${user.email}`);
           if (response.data.length > 0) {
             const userData = response.data[0];
             setIsBanned(!userData.estado);

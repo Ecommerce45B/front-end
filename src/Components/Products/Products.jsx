@@ -6,6 +6,7 @@ import { addProductCart } from '../../Redux/CarritoSlice'
 import { useSelector, useDispatch  } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios'
+import URLTOCHANGE from "../../Helpers/routesToChange";
 
 function Products(props) {    
   
@@ -23,7 +24,7 @@ function Products(props) {
 
   const getIdUser = async () => {
     const emailUser = user.email
-    const respuesta = await axios.get(`http://localhost:3001/usuarios/email/${emailUser}`)
+    const respuesta = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/email/${emailUser}`)
     return respuesta.data[0].id
   }
 
@@ -39,7 +40,7 @@ function Products(props) {
     console.log('stateGlobalCarrito--->',stateGlobalCarrito)
     // Crear carrito
     const carData = { idUser: id_Usera }
-    const response = await axios.post('http://localhost:3001/car/new', carData)
+    const response = await axios.post(`${URLTOCHANGE.theUrl}/car/new`, carData)
     console.log('----------------------------------------')
     console.log('Car creation successful:', response.data)
 
@@ -66,7 +67,7 @@ function Products(props) {
     console.log('////////////////////////// productdata //////////////////////////')
     console.log(productData)
 
-    const responseCartProducts = await axios.post('http://localhost:3001/cartproduct/new', productData)
+    const responseCartProducts = await axios.post('${URLTOCHANGE.theUrl}/cartproduct/new', productData)
     console.log('Producto agregado al carrito de la DB:', responseCartProducts)    
 
   }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { useAuth0 } from '@auth0/auth0-react';
 import styles from './NewVoto.module.css'; // Importa tus estilos CSS
+import URLTOCHANGE from "../../Helpers/routesToChange";
 
 const NewVoto = ({ idProducto, idUsuario }) => {
     const { isAuthenticated } = useAuth0();
@@ -25,7 +26,7 @@ const NewVoto = ({ idProducto, idUsuario }) => {
             setLoading(true);
             setError('');
 
-            const response = await axios.post('http://localhost:3001/votes', {
+            const response = await axios.post(`${URLTOCHANGE.theUrl}/votes`, {
                 idProducto,
                 idUsuario,
                 voto: calificacion, 

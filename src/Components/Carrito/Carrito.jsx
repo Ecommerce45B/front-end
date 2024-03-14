@@ -4,6 +4,7 @@ import { removeProducto } from '../../Redux/CarritoSlice'
 import axios from 'axios'
 
 import styles from './Carrito.module.css'
+import URLTOCHANGE from "../../Helpers/routesToChange";
 
 const Carrito = ()=>{
 
@@ -17,7 +18,7 @@ const Carrito = ()=>{
   const carrito = carritoLocalStorage
   
   const dropData = (idProduct) => {
-    const url = `http://localhost:3001/cartproduct/delete/${idProduct}`
+    const url = `${URLTOCHANGE.theUrl}/cartproduct/delete/${idProduct}`
     axios.delete(url)
       .then((response) => {
         console.log("Producto eliminado exitosamente:", response.data)

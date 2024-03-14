@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import styles from "./homeDashboard.module.css";
 import axios from "axios";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const HomeDashboard = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ const HomeDashboard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error trayendo los productos:", error);
@@ -25,7 +26,7 @@ const HomeDashboard = () => {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/categorias");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/categorias`);
         setCategorias(response.data);
       } catch (error) {
         console.error("Error trayendo las categorias:", error);
@@ -38,7 +39,7 @@ const HomeDashboard = () => {
   useEffect(() => {
     const fetchMarcas = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/marcas");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/marcas`);
         setMarcas(response.data);
       } catch (error) {
         console.error("Error trayendo las marcas:", error);
@@ -51,7 +52,7 @@ const HomeDashboard = () => {
   useEffect(() => {
     const fetchFabricantes = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/fabricantes");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/fabricantes`);
         setFabricantes(response.data);
       } catch (error) {
         console.error("Error trayendo las marcas:", error);
@@ -67,10 +68,10 @@ const HomeDashboard = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/productos/change/${productId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/productos/change/${productId}`, {
           estado: true,
         });
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error al actualizar producto:", error);
@@ -84,10 +85,10 @@ const HomeDashboard = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.put(`http://localhost:3001/productos/change/${productId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/productos/change/${productId}`, {
           estado: false,
         });
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error al eliminar producto:", error);
@@ -101,10 +102,10 @@ const HomeDashboard = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.put(`http://localhost:3001/categorias/change/${categoriaId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/categorias/change/${categoriaId}`, {
           estado: false,
         });
-        const response = await axios.get("http://localhost:3001/categorias");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/categorias`);
         setCategorias(response.data);
       } catch (error) {
         console.error("Error al eliminar categoria:", error);
@@ -118,10 +119,10 @@ const HomeDashboard = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/categorias/change/${categoriaId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/categorias/change/${categoriaId}`, {
           estado: true,
         });
-        const response = await axios.get("http://localhost:3001/categorias");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/categorias`);
         setCategorias(response.data);
       } catch (error) {
         console.error("Error al restaurar categoria:", error);
@@ -135,10 +136,10 @@ const HomeDashboard = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/marcas/change/${marcaId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/marcas/change/${marcaId}`, {
           estado: false,
         });
-        const response = await axios.get("http://localhost:3001/marcas");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/marcas`);
         setMarcas(response.data);
       } catch (error) {
         console.error("Error al eliminar marca:", error);
@@ -152,10 +153,10 @@ const HomeDashboard = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/marcas/change/${marcaId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/marcas/change/${marcaId}`, {
           estado: true,
         });
-        const response = await axios.get("http://localhost:3001/marcas");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/marcas`);
         setMarcas(response.data);
       } catch (error) {
         console.error("Error al restaurar Marcas:", error);
@@ -169,10 +170,10 @@ const HomeDashboard = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/fabricantes/change/${fabricanteId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/fabricantes/change/${fabricanteId}`, {
           estado: false,
         });
-        const response = await axios.get("http://localhost:3001/fabricantes");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/fabricantes`);
         setFabricantes(response.data);
       } catch (error) {
         console.error("Error al eliminar fabricante:", error);
@@ -186,10 +187,10 @@ const HomeDashboard = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/fabricantes/change/${fabricanteId}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/fabricantes/change/${fabricanteId}`, {
           estado: true,
         });
-        const response = await axios.get("http://localhost:3001/fabricantes");
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/fabricantes`);
         setFabricantes(response.data);
       } catch (error) {
         console.error("Error al restaurar fabricante:", error);

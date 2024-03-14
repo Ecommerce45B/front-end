@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from "./searchBarUsuarios.module.css"
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const SearchBarUsuarios = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,9 +17,9 @@ const SearchBarUsuarios = ({ onSearch }) => {
       setIsSearching(true);
       let response;
       if (searchTerm.trim() === '') {
-        response = await axios.get(`http://localhost:3001/usuarios`);
+        response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios`);
       } else {
-        response = await axios.get(`http://localhost:3001/usuarios/nombre/${searchTerm}`);
+        response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/nombre/${searchTerm}`);
       }
       if (response && response.data) {
         const uniqueUserNamesArray = response.data.reduce((acc, curr) => {

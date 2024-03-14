@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-const url = "localhost:3001";
 
 import axios from "axios";
+import URLTOCHANGE from "../Helpers/routesToChange";
+
+const url = URLTOCHANGE.theUrl;
 
 export const getProductos = createAsyncThunk(
   "productos",

@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+import URLTOCHANGE from "../Helpers/routesToChange";
 
-const LinkGetProductos = "http://localhost:3001/productos"
+const LinkGetProductos = URLTOCHANGE.theUrl;
 
 export const getProducts = createAsyncThunk("carrito/obtener", async () => {
   try {

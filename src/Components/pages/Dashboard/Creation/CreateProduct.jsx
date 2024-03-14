@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import validation from "./validationProduct";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import styles from "./creationProduct.module.css"
+import styles from "./creationProduct.module.css";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const CreateProduct = () => {
-    const baseURL = 'http://localhost:3001';
+    const baseURL = URLTOCHANGE.theUrl;
     const [ errorMessage,setErrorMessage] = useState("")
     const [popupOpen, setPopupOpen] = useState(false);
 

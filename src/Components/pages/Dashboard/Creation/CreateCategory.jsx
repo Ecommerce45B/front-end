@@ -3,6 +3,8 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import styles from "./createCategory.module.css";
 import { Link } from "react-router-dom";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
+
 
 const CreateCategory = () => {
   const {
@@ -15,7 +17,7 @@ const CreateCategory = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:3001/categorias/new", data);
+      await axios.post(`${URLTOCHANGE.theUrl}/categorias/new`, data);
       setSuccessMessage("Categoría creada exitosamente.");
       setTimeout(() => {
         setSuccessMessage("");

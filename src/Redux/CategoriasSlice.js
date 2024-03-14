@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import URLTOCHANGE from "../Helpers/routesToChange";
 
-const url = "http://127.0.0.1:3001";
+const url = URLTOCHANGE.theUrl;
 
 export const getCategorias = createAsyncThunk("categorias", async () => {
     try {

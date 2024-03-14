@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { addProduct } from '../../Redux/CarritoSlice'
 import { useSelector, useDispatch  } from 'react-redux'
 import axios from 'axios'
-
+import URLTOCHANGE from "../../Helpers/routesToChange";
 
 function Products(props) {    
   
@@ -19,7 +19,7 @@ function Products(props) {
     const usuarioAlmacenado = localStorage.getItem("user")
     const usuario = JSON.parse(usuarioAlmacenado)
     const carData = { idUser: usuario.id }
-    const response = await axios.post('http://localhost:3001/car/new', carData)
+    const response = await axios.post(`${URLTOCHANGE.theUrl}/car/new`, carData)
     console.log('----------------------------------------');
     console.log('Car creation successful:', response.data)
 
@@ -41,7 +41,7 @@ function Products(props) {
     }
 
     console.log(productData)
-    const responseCartProducts = await axios.post('http://localhost:3001/cartproduct/new', productData)
+    const responseCartProducts = await axios.post(`${URLTOCHANGE.theUrl}/cartproduct/new`, productData)
     console.log('Producto agregado al carrito:', responseCartProducts)
 
     

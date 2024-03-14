@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import URLTOCHANGE from "../Helpers/routesToChange";
 
-const url="http://localhost:3001/votos"
+const url=URLTOCHANGE.theUrl
 
 export const getVotosUsuario = createAsyncThunk(
   "dataVotosUsuario",

@@ -3,6 +3,7 @@ import { useForm} from "react-hook-form";
 import styles from "./createFabricantes.module.css"
 import { Link } from "react-router-dom";
 import axios from "axios"
+import URLTOCHANGE from "../../../../Helpers/routesToChange"
 
 const CreateMarca =() => {
 
@@ -16,7 +17,7 @@ const CreateMarca =() => {
 
   const onSubmit = async (data) => {
     try{
-      await axios.post("http://localhost:3001/marcas/new",data)
+      await axios.post(`${URLTOCHANGE.theUrl}/marcas/new`,data)
       setSuccessMessage("Marca creada exitosamente")
       setTimeout(() => {
         setSuccessMessage("");

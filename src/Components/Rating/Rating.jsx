@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getVotos, postVotos } from '../../Redux/VotosSlice';
 import axios from 'axios';
+import URLTOCHANGE from "../../Helpers/routesToChange";
 //import { FaStar } from 'react-icons/fa';
 import './Rating.module.css'
 
@@ -35,7 +36,7 @@ const Rating = ({idProducto}) => {
     const fetchUserData = async () => {
       try {
         if (isAuthenticated) {
-          const response = await axios.get(`http://localhost:3001/usuarios/email/${user.email}`);
+          const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/email/${user.email}`);
           if (response.data.length > 0) {
             const userData = response.data[0];
             console.log('user.data--->', userData);

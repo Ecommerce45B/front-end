@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./modificationProduct.module.css";
 import { Link, useParams } from "react-router-dom";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const ModificationProduct = () => {
-    const URL = "http://localhost:3001";
+    const URL = URLTOCHANGE.theUrl;
     const { id } = useParams();
 
     const [successMessage,setSuccessMessage] = useState('')

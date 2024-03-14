@@ -13,6 +13,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import axios from "axios"
 
 import Products from '../Products/Products';
+import URLTOCHANGE from "../../Helpers/routesToChange";
 // import productData from '../../../src/Components/content';
 
 function Navbar() {
@@ -26,7 +27,7 @@ function Navbar() {
     const fetchUserRole = async () => {
       try{
         if (user && user.email) {
-        const response = await axios.get(`http://localhost:3001/usuarios/email/${user.email}`)
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/email/${user.email}`)
         if(response.data.length>0){
           const userData = response.data[0];
           const roleId = userData.Role.id;

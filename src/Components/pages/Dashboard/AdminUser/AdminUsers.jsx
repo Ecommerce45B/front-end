@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './adminUsers.module.css';
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/usuarios`);
+            const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios`);
             setUsers(response.data);
         } catch (error) {
             console.error("Error trayendo usuarios:", error);
@@ -22,7 +23,7 @@ const AdminUsers = () => {
     const handleUpdateRole = async (userId, newRoleId) => {
         try {
             const response = await axios.put(
-                `http://localhost:3001/usuarios/change/${userId}`,
+                `${URLTOCHANGE.theUrl}/usuarios/change/${userId}`,
                 { Role: { id: newRoleId } }
             );
 
@@ -40,7 +41,7 @@ const AdminUsers = () => {
     const handleBanUser = async (userId, isBanned) => {
         try{
             const response = await axios.put(
-                `http://localhost:3001/usuarios/change/${userId}`,
+                `${URLTOCHANGE.theUrl}/usuarios/change/${userId}`,
                 { estado: isBanned }
             );
             if(!response.data) {

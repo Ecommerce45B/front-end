@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import styles from "./adminCatFabMarc.module.css";
 import axios from "axios";
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const AdminCateAndMarc = () => {
   const [marcas, setMarcas] = useState([]);
@@ -11,13 +12,13 @@ const AdminCateAndMarc = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const categoriasResponse = await axios.get("http://localhost:3001/categorias");
+        const categoriasResponse = await axios.get(`${URLTOCHANGE.theUrl}/categorias`);
         setCategorias(categoriasResponse.data);
 
-        const marcasResponse = await axios.get("http://localhost:3001/marcas");
+        const marcasResponse = await axios.get(`${URLTOCHANGE.theUrl}/marcas`);
         setMarcas(marcasResponse.data);
 
-        const fabricantesResponse = await axios.get("http://localhost:3001/fabricantes");
+        const fabricantesResponse = await axios.get(`${URLTOCHANGE.theUrl}/fabricantes`);
         setFabricantes(fabricantesResponse.data);
       } catch (error) {
         console.error("Error:", error);
@@ -33,10 +34,10 @@ const AdminCateAndMarc = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.put(`http://localhost:3001/${url}/change/${id}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/${url}/change/${id}`, {
           estado: false,
         });
-        const response = await axios.get(`http://localhost:3001/${url}`);
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/${url}`);
         setState(response.data);
       } catch (error) {
         console.error("Error al eliminar elemento:", error);
@@ -50,10 +51,10 @@ const AdminCateAndMarc = () => {
     );
     if (confirmRestore) {
       try {
-        await axios.put(`http://localhost:3001/${url}/change/${id}`, {
+        await axios.put(`${URLTOCHANGE.theUrl}/${url}/change/${id}`, {
           estado: true,
         });
-        const response = await axios.get(`http://localhost:3001/${url}`);
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/${url}`);
         setState(response.data);
       } catch (error) {
         console.error("Error al restaurar elemento:", error);

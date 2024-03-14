@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import styles from './Profile.module.css';
 import { FaStar } from 'react-icons/fa';
 import { FaCamera } from 'react-icons/fa';
+import URLTOCHANGE from "../../Helpers/routesToChange";
 
 
 const Profile = () => {
@@ -19,7 +20,7 @@ const Profile = () => {
   const fetchUserVotes = async () => {
     try {
       if (userData.id) {
-        const response = await axios.get(`http://localhost:3001/votos/user/${userData.id}`);
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/votos/user/${userData.id}`);
         setUserVotes(response.data);
       }
     } catch (error) {
@@ -31,7 +32,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         if (isAuthenticated && user && user.email) {
-          const response = await axios.get(`http://localhost:3001/usuarios/email/${user.email}`);
+          const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/email/${user.email}`);
           if (response.data.length > 0) {
             const userData = response.data[0];
             setUserData(userData);
@@ -60,7 +61,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProductDetails = async (idProducto) => {
       try {
-        const response = await axios.get(`http://localhost:3001/productos/${idProducto}`);
+        const response = await axios.get(`${URLTOCHANGE.theUrl}/productos/${idProducto}`);
         return response.data;
       } catch (error) {
         console.error("Error trayendo el detalle del producto:", error);
@@ -86,7 +87,7 @@ const Profile = () => {
         const formData = new FormData();
         formData.append('image', image);
 
-        const cloudinaryResponse = await axios.post(`http://localhost:3001/imagenes/uploadImage`, formData, {
+        const cloudinaryResponse = await axios.post(`${URLTOCHANGE.theUrl}/imagenes/uploadImage`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -102,7 +103,7 @@ const Profile = () => {
       }
 
       
-      await axios.put(`http://localhost:3001/usuarios/change/${userData.id}`, data);
+      await axios.put(`${URLTOCHANGE.theUrl}/usuarios/change/${userData.id}`, data);
       console.log("Datos del usuario actualizados exitosamente:", data); 
 
     
@@ -117,7 +118,7 @@ const Profile = () => {
   const handleDeleteVote = async (id) => {
     try {
       console.log("ID del voto a eliminar:", id); 
-      await axios.delete(`http://localhost:3001/votos/delete/${id}`);
+      await axios.delete(`${URLTOCHANGE.theUrl}/votos/delete/${id}`);
       console.log("Voto eliminado correctamente"); 
       fetchUserVotes();
       setUserUpdated(false);

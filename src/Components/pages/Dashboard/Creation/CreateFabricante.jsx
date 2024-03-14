@@ -3,6 +3,7 @@ import { useForm} from "react-hook-form";
 import styles from "./createFabricantes.module.css"
 import { Link } from "react-router-dom";
 import axios from "axios"
+import URLTOCHANGE from "../../../../Helpers/routesToChange";
 
 const CreateFabricante =() => {
 
@@ -16,7 +17,7 @@ const CreateFabricante =() => {
 
   const onSubmit = async (data) => {
     try{
-      await axios.post("http://localhost:3001/fabricantes/new",data)
+      await axios.post(`${URLTOCHANGE.theUrl}/fabricantes/new`,data)
       setSuccessMessage("Fabricante creado exitosamente")
       setTimeout(() => {
         setSuccessMessage("");
